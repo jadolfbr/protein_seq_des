@@ -8,7 +8,7 @@ import seq_des.common.atoms as atoms
 
 
 
-def get_log_p_from_seq_des(pose, logdir, classifiers=None):
+def get_log_p(pose, logdir, classifiers=None):
     """
     Returns the logp_mean and logp per residue from seq des inference code.
     Pass models in to speed up inference speed
