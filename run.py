@@ -5,10 +5,10 @@ import torch.nn as nn
 
 from seq_des import *
 import seq_des.sampler as sampler
-import seq_des.models as models
 
-import common.run_manager
-import common.atoms
+import seq_des.common.run_manager
+import seq_des.common.atoms
+from seq_des.common.load import *
 
 import sys
 import pickle
@@ -43,33 +43,6 @@ def log_metrics(run="sampler", args=None, log=None, iteration=0, design_sampler=
         log.log_scalar("{run}/y_{prefix}{n}".format(run=run, prefix=prefix, n=n), s)
 
 
-
-def load_model(model, use_cuda=True, nic=len(common.atoms.atoms)):
-    classifier = models.seqPred(nic=nic)
-    if use_cuda:
-        classifier.cuda()
-    if use_cuda:
-        state = torch.load(model)
-    else:
-        state = torch.load(model, map_location="cpu")
-    for k in state.keys():
-        if "module" in k:
-            print("MODULE")
-            classifier = nn.DataParallel(classifier)
-        break
-    if use_cuda:
-        classifier.load_state_dict(torch.load(model))
-    else:
-        classifier.load_state_dict(torch.load(model, map_location="cpu"))
-    return classifier
-
-
-def load_models(model_list, use_cuda=True, nic=len(common.atoms.atoms)):
-    classifiers = []
-    for model in model_list:
-        classifier = load_model(model, use_cuda=use_cuda, nic=nic)
-        classifiers.append(classifier)
-    return classifiers
 
 
 def main():
@@ -161,8 +134,15 @@ def main():
     # save final model
     design_sampler.pose.dump_pdb(log.log_path + "/" + "curr_final.pdb")
     
-    np.savetxt('{}/logmeans.txt'.format(log.log_path),logmeans, delimiter=',')
-    np.savetxt('{}/rosetta_energy.txt'.format(log.log_path),rosettas, delimiter=',')
+    #np.savetxt('{}/logmeans.txt'.format(log.log_path),logmeans, delimiter=',')
+    #np.savetxt('{}/rosetta_energy.txt'.format(log.log_path),rosettas, delimiter=',')
+
+    #Actualy write out final data
+    with open(f'{log.log_path}/logmeans.txt', 'w') as OUT:
+        OUT.write(','.join(str(x) for x in logmeans))
+
+    with open(f'{log.log_path}/rosetta_energy.txt', 'w') as OUT:
+        OUT.write(','.join(str(x) for x in rosettas))
 
 if __name__ == "__main__":
     main()

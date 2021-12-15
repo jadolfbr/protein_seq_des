@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import seq_des.util.data as data
-import common.atoms
+import seq_des.common.atoms
 
 
 def init_ortho_weights(self):

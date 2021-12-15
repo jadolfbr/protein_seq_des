@@ -12,7 +12,7 @@ import seq_des.util.sampler_util as sampler_util
 import seq_des.util.canonicalize as canonicalize
 import seq_des.util.data as data
 import seq_des.util.resfile_util as resfile_util
-import common.atoms
+import seq_des.common.atoms
 
 from pyrosetta.rosetta.protocols.simple_filters import (
     BuriedUnsatHbondFilterCreator,

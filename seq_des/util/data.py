@@ -11,7 +11,7 @@ import os
 import re
 import glob
 
-import common.atoms
+import seq_des.common.atoms
 import seq_des.util.canonicalize as canonicalize
 import seq_des.util.voxelize as voxelize
 

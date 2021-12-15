@@ -1,6 +1,6 @@
 # developed by Damir Temir | github.com/dtemir | as a part of the RosettaCommons Summer Internship
 
-import common
+import seq_des.common as common
 import re
 
 def read_resfile(filename):

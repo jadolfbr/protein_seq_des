@@ -4,7 +4,7 @@ import numpy as np
 import seq_des.util.data as data
 import seq_des.util.canonicalize as canonicalize
 import seq_des.util.voxelize as voxelize
-import common.atoms
+import seq_des.common.atoms
 
 import torch.nn.functional as F
 from torch.distributions.categorical import Categorical
