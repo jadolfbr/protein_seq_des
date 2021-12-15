@@ -14,7 +14,7 @@ import glob
 import seq_des.common.atoms
 import seq_des.util.canonicalize as canonicalize
 import seq_des.util.voxelize as voxelize
-
+import seq_des.common as common
 
 CHI_BINS = np.linspace(-np.pi, np.pi, num=25)
 
