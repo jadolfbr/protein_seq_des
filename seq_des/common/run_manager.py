@@ -19,6 +19,7 @@ class RunManager(object):
         self.parser.add_argument("--batchSize", type=int, default=64, help="input batch size")
         self.parser.add_argument("--ngpu", type=int, default=1, help="num gpus to parallelize over")
 
+        self.parser.add_argument("--ncpu", type=int, default=1, help="Max num cpus Torch can use.")
         self.parser.add_argument("--nf", type=int, default=64, help="base number of filters")
         self.parser.add_argument("--txt", type=str, default="txt/train_domains_s95.txt", help="default txt input file")
 

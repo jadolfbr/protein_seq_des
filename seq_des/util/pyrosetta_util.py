@@ -1,9 +1,8 @@
 import numpy as np
-import common.atoms
 
 from rosetta import *
 from pyrosetta import *
-init("-mute basic -mute core -mute protocols  -ex1 -ex2 -constant_seed")
+init("-mute basic -mute core -mute protocols  -ex1 -ex2 -constant_seed -multithreading:interaction_graph_threads 1 -multithreading:total_threads 1")
 
 #from pyrosetta.toolbox import pose_from_rcsb, cleanATOM  # , mutate_residue
 from pyrosetta.rosetta.protocols.simple_moves import MutateResidue
@@ -15,6 +14,7 @@ from pyrosetta.rosetta.protocols.minimization_packing import PackRotamersMover
 score_manager = pyrosetta.rosetta.core.scoring.ScoreTypeManager()
 scorefxn = get_fa_scorefxn()
 from pyrosetta.rosetta.core.chemical import aa_from_oneletter_code
+import seq_des.common as common
 
 
 def get_seq_delta(s1, s2):

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import numpy as np
 import os
 import torch
@@ -8,14 +10,14 @@ import seq_des.sampler as sampler
 
 import seq_des.common.run_manager
 import seq_des.common.atoms
+import seq_des.common as common
 from seq_des.common.load import *
 
 import sys
 import pickle
 import glob
 
-from pyrosetta.rosetta.protocols.simple_filters import BuriedUnsatHbondFilterCreator, PackStatFilterCreator
-from pyrosetta.rosetta.protocols.denovo_design.filters import ExposedHydrophobicsFilterCreator
+#import pyrosetta
 
 from tqdm import tqdm
 
@@ -48,12 +50,13 @@ def log_metrics(run="sampler", args=None, log=None, iteration=0, design_sampler=
 def main():
 
     manager = common.run_manager.RunManager()
-
+    #pyrosetta.init()
     manager.parse_args()
     args = manager.args
     log = manager.log
 
     use_cuda = torch.cuda.is_available()
+    torch.set_num_threads(args.ncpu)
 
     # download pdb if not there already
     if not os.path.isfile(args.pdb):
