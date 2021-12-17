@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
+
 import numpy as np
-import os
+import os,sys
+sys.path.append( os.path.dirname(os.path.dirname( os.path.abspath(sys.path[0]) )) )
+
 import torch
 import torch.nn as nn
 
