@@ -59,7 +59,8 @@ def main():
     log = manager.log
 
     use_cuda = torch.cuda.is_available()
-    torch.set_num_threads(args.ncpu)
+    if args.ncpu:
+        torch.set_num_threads(args.ncpu)
 
     # download pdb if not there already
     if not os.path.isfile(args.pdb):

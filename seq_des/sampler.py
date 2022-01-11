@@ -113,7 +113,6 @@ class Sampler(object):
             - eval metrics on starting (ground-truth) sequence
             - get blocks for blocked sampling
         """
-        print("Initializing sampler.")
         # initialize sampler
         self.init_rosetta_filters()
         # score starting (ground-truth) pdb, get gt energies
@@ -185,7 +184,6 @@ class Sampler(object):
 
     def init_seq(self):
         # initialize starting sequence
-        print("initializing sequence")
         # random/poly-alanine/poly-valine initialize sequence, pack rotamers
         self.pose = putil.get_pose(self.pdb)
         if self.randomize:

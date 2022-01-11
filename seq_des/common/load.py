@@ -5,7 +5,6 @@ import seq_des.common.atoms as atoms
 from .paths import *
 
 def load_model(model, use_cuda=True, nic=len(atoms.atoms)):
-    print("Loading model")
     if os.path.exists(get_project_root()+'/'+model):
         model = get_project_root()+'/'+model
 
@@ -18,8 +17,7 @@ def load_model(model, use_cuda=True, nic=len(atoms.atoms)):
         state = torch.load(model, map_location="cpu")
     for k in state.keys():
         if "module" in k:
-            print("MODULE")
-            classifier=classifier
+            classifier=nn.DataParallel(classifier)
         break
     if use_cuda:
         classifier.load_state_dict(torch.load(model))
@@ -46,7 +44,7 @@ def load_models(model_list = None, use_cuda=True, nic=len(atoms.atoms)):
 
     classifiers = []
     for model in model_list:
-        print(get_project_root()+'/'+model)
+        print("Loading model",get_project_root()+'/'+model)
         if os.path.exists(get_project_root()+'/'+model):
             model = get_project_root()+'/'+model
         classifier = load_model(model, use_cuda=use_cuda, nic=nic)

@@ -59,11 +59,10 @@ def get_energy_from_logits(logits, res_idx, mask=None, baseline=0):
 
 def get_conv_feat(
     curr_models, atom_coords, atom_data, residue_bb_index_list, res_data, res_label, chis, bb_only=0, return_chi=0, use_cuda=1
-):  
+):
     atom_coords_canonicalized, atom_data_canonicalized = canonicalize.batch_canonicalize_coords(
         atom_coords, atom_data, residue_bb_index_list, bb_only=bb_only
     )
-
     x = atom_coords_canonicalized
     y = res_label
     x_data = atom_data_canonicalized
@@ -174,7 +173,6 @@ def get_energy_from_feat(
     # get residue log probs
     # energy, energy_per_res,
     log_p_per_res, log_p_mean = get_energy_from_logits(logits, y)
-
     # get rotamer log_probs
     chi_1_mask = torch.zeros_like(chi_1)
     chi_2_mask = torch.zeros_like(chi_2)
@@ -250,7 +248,6 @@ def get_energy(models, pose=None, pdb=None, chain="A", bb_only=0, return_chi=0, 
         include_rotamer_probs=include_rotamer_probs,
         use_cuda=use_cuda,
     )
-
     if return_chi:
         return res_label, log_p_per_res, log_p_mean, logits, chi_feat, chi_angles, chi_mask, [chi_1, chi_2, chi_3, chi_4]
     return res_label, log_p_per_res, log_p_mean, logits, chi_feat, chi_angles, chi_mask
