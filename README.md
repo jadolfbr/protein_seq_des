@@ -2,7 +2,8 @@
 
 Code for the algorithm in our paper 
 
-> Namrata Anand-Achim, Raphael R. Eguchi, Alexander Derry, Russ B. Altman, and Possu Huang. "Protein sequence design with a learned potential." bioRxiv (2020).
+> Namrata Anand-Achim, Raphael R. Eguchi, Alexander Derry, Russ B. Altman, and Possu Huang. "Protein sequence design with a learned potential." Nature (2022).
+> [[nature]](https://www.nature.com/articles/s41467-022-28313-9) [[cit]](#citation)
 > [[biorxiv]](https://www.biorxiv.org/content/10.1101/2020.01.06.895466v1) [[cite]](#citation)
 
 ![Model design trajectory](imgs/tim.gif)
@@ -41,6 +42,9 @@ python load_and_save_coords.py --save_dir PATH_TO_SAVE_DATA --pdb_dir PATH_TO_PD
 
 Inputs to the data generation script are .txt files with the domain IDs (see data/train_domains_s95.txt and data/test_domain_s95.txt). If you don't have PDB files downloaded, the script will download those and save it to pdb_dir.
 
+## Scoring
+
+The repository has been refactored to allow scoring within python scripts. Add the root of the repo to your PYTHONPATH. Instructions for running in scoring mode will come. 
 
 ## Training the models
 
