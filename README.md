@@ -29,9 +29,9 @@ If you'd like to use the pre-trained models to run design, jump to [[this sectio
 
 The repository has been refactored to allow scoring within python scripts. Add the root of the repo to your PYTHONPATH. 
 An example of using this functionality is below:
-all_log_p is a dictionary with 0-indexed residue numbers and each residue's log(p)
+`all_log_p` is a dictionary with 0-indexed residue numbers and each residue's log(p)
 
-You can also pass the model into get_log_p if you have many PDBs to score.  
+You can also pass the model into `get_log_p` if you have many PDBs to score.  
 This functionality is especially useful for choosing designs to express. 
 ```
 from seq_des.scoring import get_log_p
