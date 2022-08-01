@@ -101,8 +101,10 @@ def get_pdb_chains(pdb, data_dir, assembly=1, skip_download=0):
         f = data_dir + "/" + pdb + ".pdb1"
         if not os.path.isfile(f):
             f = data_dir + "/" + pdb + ".pdb"
-    else:
+    elif data_dir:
         f = data_dir + "/" + pdb + ".pdb"
+    else:
+        f = pdb+'.pdb'
 
     assert os.path.isfile(f)
     structure = Bio.PDB.PDBParser(QUIET=True).get_structure(pdb, f)

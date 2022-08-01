@@ -1,3 +1,5 @@
+import os.path
+
 import torch
 import numpy as np
 
@@ -215,7 +217,7 @@ def get_energy_from_feat(
 def get_energy(models, pose=None, pdb=None, chain="A", bb_only=0, return_chi=0, use_cuda=1, log_path="./", include_rotamer_probs=0):
     if pdb is not None:
         atom_coords, atom_data, residue_bb_index_list, res_data, res_label, chis = data.get_pdb_data(
-            pdb[pdb.rfind("/") + 1 : -4], data_dir=pdb[: pdb.rfind("/")], skip_download=1, assembly=0
+            pdb[pdb.rfind("/") + 1 : -4], data_dir=os.path.dirname(pdb), skip_download=1, assembly=0
         )
     else:
         assert pose is not None, "need to specify pose to calc energy"

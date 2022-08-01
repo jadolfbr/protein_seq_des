@@ -20,6 +20,11 @@ Entirely AI designed four-fold symmetric TIM-barrel
 
 See [here](https://github.com/nanand2/protein_seq_des/blob/master/SETUP.md) for set-up instructions on Ubuntu 18.04 with Miniconda, Python 3.7, PyTorch 1.1.0, CUDA 9.0. 
 
+Note that PYTHONPATH and PATH must be set with PSD root.
+```commandline
+export PATH=$PATH:path/to/psd
+export PYTHONPATH=$PYTHONPATH:path/to/psd
+```
 
 ## Design
 

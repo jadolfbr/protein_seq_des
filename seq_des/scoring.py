@@ -10,6 +10,7 @@ import seq_des.common.atoms as atoms
 
 def get_log_p(pose_or_pdbpath, logdir, classifiers=None):
     """
+    Jared Adolf-Bryfogle
     Returns the logp_mean and logp per residue from seq des inference code.
     Pass models in to speed up inference speed.
 
