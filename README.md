@@ -2,8 +2,9 @@
 
 Code for the algorithm in our paper 
 
-> Namrata Anand-Achim, Raphael R. Eguchi, Alexander Derry, Russ B. Altman, and Possu Huang. "Protein sequence design with a learned potential." bioRxiv (2020).
-> [[biorxiv]](https://www.biorxiv.org/content/10.1101/2020.01.06.895466v1) [[cite]](#citation)
+> Namrata Anand-Achim, Raphael R. Eguchi, Alexander Derry, Russ B. Altman, and Possu Huang. "Protein sequence design with a learned potential." Nature Communications (2022).
+> [[nature]](https://www.nature.com/articles/s41467-022-28313-9) 
+> [[biorxiv]](https://www.biorxiv.org/content/10.1101/2020.01.06.895466v1) 
 
 ![Model design trajectory](imgs/tim.gif)
 
@@ -23,6 +24,22 @@ See [here](https://github.com/nanand2/protein_seq_des/blob/master/SETUP.md) for 
 ## Design
 
 If you'd like to use the pre-trained models to run design, jump to [[this section]](#running-design)
+
+## Scoring
+
+The repository has been refactored to allow scoring within python scripts. Add the root of the repo to your PYTHONPATH. 
+An example of using this functionality is below:
+`all_log_p` is a dictionary with 0-indexed residue numbers and each residue's log(p)
+
+You can also pass the model into `get_log_p` if you have many PDBs to score.  
+This functionality is especially useful for choosing designs to express. 
+```
+from seq_des.scoring import get_log_p
+
+pdb = path/to/pdb
+p_mean, all_log_p = get_log_p(pdb)
+```
+
 
 ## Generating data
 Data is available [here](https://console.cloud.google.com/storage/browser/seq-des-data) on GCP. Note you will need to authenticate to access the data and link a billing account as well to pay for the download.
